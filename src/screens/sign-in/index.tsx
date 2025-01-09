@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Button, TextInput, Text} from '@react-native-material/core';
