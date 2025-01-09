@@ -1,4 +1,4 @@
-import {TUserRole} from '../index';
+import { TUserRole } from '@interfaces';
 
 export interface ISetAccessTokenAction {
   accessToken: string | undefined;

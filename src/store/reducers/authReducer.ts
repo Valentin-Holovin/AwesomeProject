@@ -1,6 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {IAuthReducerState} from '../../interfaces/reducers/authReducers';
-import {setAccessTokenAction, setLoadingAction} from '../actions/authAction';
+import {IAuthReducerState} from '../../interfaces/reducers/authReducer';
+import {setAccessTokenAction, setLoadingAction} from '../actions/authActions';
 
 const initialState: IAuthReducerState = {
   accessToken: undefined,

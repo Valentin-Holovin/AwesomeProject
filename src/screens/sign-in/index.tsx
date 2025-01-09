@@ -5,7 +5,7 @@ import {Button, TextInput, Text} from '@react-native-material/core';
 import {useNavigator, useValidation} from '../../hooks';
 import {useDispatch, useSelector} from 'react-redux';
 import {TAppDispatch, TRootState} from '../../store';
-import {signInAsyncAction} from '../../store/actions/authAction';
+import {signInAsyncAction} from '../../store/actions/authActions';
 
 export const SignIn = () => {
   const [email, setEmail] = React.useState('');
