@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#6200ee',
     width: '100%',
-    paddingBottom: 20,
-    paddingTop: 10,
+    paddingBottom: 15,
+    paddingTop: 15,
   },
   wrapper: {
     marginHorizontal: 20,
