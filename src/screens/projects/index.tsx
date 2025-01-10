@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {Button, Text, ActivityIndicator} from '@react-native-material/core';
-import {Header, ProjectList} from '../../components';
+import {Header, LoadingIndicator, ProjectList} from '../../components';
 import {useNavigator, useProjects} from '../../hooks';
 import {IProject} from '../../interfaces';
 
@@ -21,14 +21,14 @@ export const Projects = () => {
     navigation.navigate('ProjectCreator');
   };
 
-  if (loading) {
-    <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large" />;
-    </View>;
-  }
+  // if (loading) {
+  //   <ActivityIndicator size="large" />;
+  // }
 
   return (
     <View style={styles.container}>
+      <LoadingIndicator visible={loading} />
+
       <Header title="Projects" />
       <View style={styles.wrapper}>
         <Text style={styles.title}>Projects</Text>
@@ -51,11 +51,6 @@ export const Projects = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  loadingContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   wrapper: {
     marginHorizontal: 20,
