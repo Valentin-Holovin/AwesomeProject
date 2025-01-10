@@ -4,28 +4,27 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Header} from '../../components';
 import {useNavigator, useProjects, useValidation} from '../../hooks';
+import {ProjectEditorProps} from '../../navigation/AppNavigation';
 
-export const ProjectCreator = () => {
-  const [title, setTitle] = React.useState('');
-  const [description, setDescription] = React.useState('');
+export const ProjectEditor: React.FC<ProjectEditorProps> = ({route}) => {
+  const {projectId, currentTitle, currentDescription} = route.params;
+
+  const [title, setTitle] = React.useState(currentTitle);
+  const [description, setDescription] = React.useState(currentDescription);
 
   const {validateField} = useValidation();
-  const {loading, createProject} = useProjects();
+  const {loading, updateProject} = useProjects();
   const {goToBack} = useNavigator();
 
-  const createNewProject = React.useCallback(() => {
-    const isTitleValid = validateField('title', title);
-    const isDescriptionValid = validateField('description', description);
-    if (isTitleValid && isDescriptionValid) {
-      createProject(title, description, goToBack);
-    }
-  }, [title, description]);
+  const updateCurrentProject = React.useCallback(() => {
+    updateProject(projectId, title, description, goToBack);
+  }, [projectId, title, description]);
 
   return (
     <View style={styles.container}>
       <Header title="Project Creator" isBack />
       <View style={styles.wrapper}>
-        <Text style={styles.title}>Create New Project</Text>
+        <Text style={styles.title}>Update Project</Text>
 
         <View style={styles.input_wrapper}>
           <TextInput
@@ -49,8 +48,8 @@ export const ProjectCreator = () => {
         <View style={styles.button_wrapper}>
           <Button
             style={styles.button}
-            title="CREATE NEW PROJECT"
-            onPress={createNewProject}
+            title="UPDATE PROJECT"
+            onPress={updateCurrentProject}
             loading={loading}
             disabled={loading}
           />

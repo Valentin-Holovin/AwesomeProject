@@ -14,13 +14,13 @@ export const ProjectList = ({project}: ProjectListProps) => {
   const {deleteProject} = useProjects();
   const {navigation} = useNavigator();
 
-  // const goToProjectEditor = React.useCallback(
-  //   (event: React.MouseEvent<HTMLDivElement>) => {
-  //     event.stopPropagation();
-  //     navigation.navigate(`/projects/edit/${project.id}`);
-  //   },
-  //   [project]
-  // );
+  const goToProjectEditor = React.useCallback(() => {
+    navigation.navigate('ProjectEditor', {
+      projectId: project.id,
+      currentTitle: project.title,
+      currentDescription: project.description,
+    });
+  }, [project]);
 
   const deleteCurrentProject = React.useCallback(() => {
     Alert.alert(
@@ -51,7 +51,7 @@ export const ProjectList = ({project}: ProjectListProps) => {
             <Text style={styles.title}>{project?.title}</Text>
           </View>
           <View style={styles.title_button_wrapper}>
-            <Pressable>
+            <Pressable onPress={goToProjectEditor}>
               <EditIcon />
             </Pressable>
             <Pressable onPress={deleteCurrentProject}>
