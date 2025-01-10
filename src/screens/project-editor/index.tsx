@@ -22,7 +22,7 @@ export const ProjectEditor: React.FC<ProjectEditorProps> = ({route}) => {
 
   return (
     <View style={styles.container}>
-      <Header title="Project Creator" isBack />
+      <Header title="Project Editor" isBack />
       <View style={styles.wrapper}>
         <Text style={styles.title}>Update Project</Text>
 

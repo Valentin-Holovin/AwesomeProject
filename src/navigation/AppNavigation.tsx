@@ -7,6 +7,7 @@ import Toast from 'react-native-toast-message';
 import {StyleSheet} from 'react-native';
 import {
   ProjectCreator,
+  ProjectDetails,
   ProjectEditor,
   Projects,
   SignIn,
@@ -14,6 +15,7 @@ import {
 } from '../screens';
 import {useSelector} from 'react-redux';
 import {TRootState} from '../store';
+import {IProject} from '../interfaces';
 
 type RootStackParamList = {
   SignIn: undefined;
@@ -25,6 +27,9 @@ type RootStackParamList = {
     currentTitle: string;
     currentDescription: string;
   };
+  ProjectDetails: {
+    project: IProject;
+  };
 };
 
 export type SignInScreenNavigationProp = NativeStackNavigationProp<
@@ -34,6 +39,11 @@ export type SignInScreenNavigationProp = NativeStackNavigationProp<
 export type ProjectEditorProps = NativeStackScreenProps<
   RootStackParamList,
   'ProjectEditor'
+>;
+
+export type ProjectDetailsProps = NativeStackScreenProps<
+  RootStackParamList,
+  'ProjectDetails'
 >;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -60,6 +70,7 @@ const AppNavigation = () => {
               <Stack.Screen name="Projects" component={Projects} />
               <Stack.Screen name="ProjectCreator" component={ProjectCreator} />
               <Stack.Screen name="ProjectEditor" component={ProjectEditor} />
+              <Stack.Screen name="ProjectDetails" component={ProjectDetails} />
             </>
           )}
         </Stack.Navigator>

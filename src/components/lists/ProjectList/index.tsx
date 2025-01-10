@@ -14,6 +14,12 @@ export const ProjectList = ({project}: ProjectListProps) => {
   const {deleteProject} = useProjects();
   const {navigation} = useNavigator();
 
+  const goToProjectDetails = React.useCallback(() => {
+    navigation.navigate('ProjectDetails', {
+      project,
+    });
+  }, [project]);
+
   const goToProjectEditor = React.useCallback(() => {
     navigation.navigate('ProjectEditor', {
       projectId: project.id,
@@ -44,7 +50,7 @@ export const ProjectList = ({project}: ProjectListProps) => {
   }, [project]);
 
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={goToProjectDetails}>
       <View style={styles.wrapper}>
         <View style={styles.title_wrapper}>
           <View>
