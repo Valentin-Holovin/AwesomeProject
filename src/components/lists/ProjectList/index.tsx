@@ -1,14 +1,48 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import {Text, Pressable} from '@react-native-material/core';
 import {DeleteIcon, EditIcon} from '../../../assets';
 import {IProject} from '../../../interfaces';
+import {useNavigator, useProjects} from '../../../hooks';
 
 interface ProjectListProps {
   project: IProject;
 }
 
 export const ProjectList = ({project}: ProjectListProps) => {
+  const {deleteProject} = useProjects();
+  const {navigation} = useNavigator();
+
+  // const goToProjectEditor = React.useCallback(
+  //   (event: React.MouseEvent<HTMLDivElement>) => {
+  //     event.stopPropagation();
+  //     navigation.navigate(`/projects/edit/${project.id}`);
+  //   },
+  //   [project]
+  // );
+
+  const deleteCurrentProject = React.useCallback(() => {
+    Alert.alert(
+      'Confirm Deletion',
+      'Are you sure you want to delete?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: () => {
+            deleteProject(project.id!);
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+  }, [project]);
+
   return (
     <Pressable style={styles.container}>
       <View style={styles.wrapper}>
@@ -20,7 +54,7 @@ export const ProjectList = ({project}: ProjectListProps) => {
             <Pressable>
               <EditIcon />
             </Pressable>
-            <Pressable>
+            <Pressable onPress={deleteCurrentProject}>
               <DeleteIcon />
             </Pressable>
           </View>
