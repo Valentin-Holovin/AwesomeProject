@@ -1,7 +1,8 @@
+/* eslint-disable radix */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import {View, Alert, StyleSheet, ScrollView} from 'react-native';
-import {Header, LoadingIndicator} from '../../components';
+import {Header, LoadingIndicator, TaskList} from '../../components';
 import {useNavigator, useProjects, useTasks} from '../../hooks';
 import {ProjectDetailsProps} from '../../navigation/AppNavigation';
 import {Button, Text} from '@react-native-material/core';
@@ -95,6 +96,13 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({route}) => {
             onPress={deleteCurrentProject}
           />
         </ScrollView>
+
+        <TaskList
+          tasks={tasks}
+          loading={loading}
+          error={error}
+          projectInfo={projectInfo}
+        />
       </View>
     </View>
   );

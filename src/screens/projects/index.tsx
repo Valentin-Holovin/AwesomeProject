@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Button, Text} from '@react-native-material/core';
-import {Header, LoadingIndicator, ProjectList} from '../../components';
+import {Header, ProjectList} from '../../components';
 import {useNavigator, useProjects} from '../../hooks';
-import {IProject} from '../../interfaces';
 
 export const Projects = () => {
   const {projects, error, loading, fetchProjects} = useProjects();
@@ -13,18 +13,12 @@ export const Projects = () => {
     fetchProjects();
   }, []);
 
-  const renderItem = ({item}: {item: IProject}) => {
-    return <ProjectList project={item} />;
-  };
-
   const goToProjectCreator = () => {
     navigation.navigate('ProjectCreator');
   };
 
   return (
     <View style={styles.container}>
-      <LoadingIndicator visible={loading} />
-
       <Header title="Projects" />
       <View style={styles.wrapper}>
         <Text style={styles.title}>Projects</Text>
@@ -34,11 +28,7 @@ export const Projects = () => {
           titleStyle={styles.button_text}
           onPress={goToProjectCreator}
         />
-        <FlatList
-          data={projects}
-          renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
-        />
+        <ProjectList projects={projects} loading={loading} error={error} />
       </View>
     </View>
   );

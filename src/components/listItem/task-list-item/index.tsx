@@ -1,34 +1,26 @@
+/* eslint-disable radix */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import {View, StyleSheet, Alert} from 'react-native';
 import {Text, Pressable} from '@react-native-material/core';
 import {DeleteIcon, EditIcon} from '../../../assets';
-import {IProject} from '../../../interfaces';
-import {useNavigator, useProjects} from '../../../hooks';
+import {IProject, ITask} from '../../../interfaces';
+import {useNavigator, useTasks} from '../../../hooks';
+import {TaskStatus} from '../../task-status';
+import {TaskType} from '../../task-type';
+import {TaskUser} from '../../task-user';
 
-interface ProjectListProps {
-  project: IProject;
+interface TaskListItemProps {
+  task: ITask;
+  projectInfo?: IProject;
 }
 
-export const ProjectList = ({project}: ProjectListProps) => {
-  const {deleteProject} = useProjects();
-  const {navigation} = useNavigator();
+export const TaskListItem = ({task, projectInfo}: TaskListItemProps) => {
+  const {navigation, goToBack} = useNavigator();
 
-  const goToProjectDetails = React.useCallback(() => {
-    navigation.navigate('ProjectDetails', {
-      project,
-    });
-  }, [project]);
+  const {deleteTask} = useTasks(parseInt(projectInfo.id!));
 
-  const goToProjectEditor = React.useCallback(() => {
-    navigation.navigate('ProjectEditor', {
-      projectId: project.id,
-      currentTitle: project.title,
-      currentDescription: project.description,
-    });
-  }, [project]);
-
-  const deleteCurrentProject = React.useCallback(() => {
+  const deleteCurrentTask = React.useCallback(() => {
     Alert.alert(
       'Confirm Deletion',
       'Are you sure you want to delete?',
@@ -41,46 +33,39 @@ export const ProjectList = ({project}: ProjectListProps) => {
           text: 'Delete',
           style: 'destructive',
           onPress: () => {
-            deleteProject(project.id!);
+            deleteTask(task.id!);
           },
         },
       ],
       {cancelable: true},
     );
-  }, [project]);
+  }, [projectInfo]);
 
   return (
-    <Pressable style={styles.container} onPress={goToProjectDetails}>
+    <Pressable style={styles.container}>
       <View style={styles.wrapper}>
         <View style={styles.title_wrapper}>
           <View>
-            <Text style={styles.title}>{project?.title}</Text>
+            <Text style={styles.title}>{task?.title}</Text>
           </View>
           <View style={styles.title_button_wrapper}>
-            <Pressable onPress={goToProjectEditor}>
+            <Pressable>
               <EditIcon />
             </Pressable>
-            <Pressable onPress={deleteCurrentProject}>
+            <Pressable onPress={deleteCurrentTask}>
               <DeleteIcon />
             </Pressable>
           </View>
         </View>
 
         <View>
-          <Text style={styles.description}>{project?.description}</Text>
+          <Text style={styles.description}>{task?.description}</Text>
         </View>
 
         <View style={styles.task_info_wrapper}>
-          <View>
-            <Text style={styles.task_info_text}>
-              Task count: {project?.tasksCount}
-            </Text>
-          </View>
-          <View style={styles.task_info_members}>
-            <Text style={styles.task_info_text}>
-              Members: {project?.users.length}
-            </Text>
-          </View>
+          <TaskType type={task.type} />
+          <TaskStatus status={task.status} />
+          <TaskUser user={task.user} />
         </View>
       </View>
     </Pressable>
@@ -116,14 +101,7 @@ const styles = StyleSheet.create({
   },
   task_info_wrapper: {
     flexDirection: 'row',
-    alignItems: 'center',
     marginTop: 10,
-  },
-  task_info_text: {
-    fontSize: 13,
-    fontWeight: '300',
-  },
-  task_info_members: {
-    marginLeft: 10,
+    marginBottom: 5,
   },
 });
