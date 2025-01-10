@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
-import {Button, Text, ActivityIndicator} from '@react-native-material/core';
+import {Button, Text} from '@react-native-material/core';
 import {Header, LoadingIndicator, ProjectList} from '../../components';
 import {useNavigator, useProjects} from '../../hooks';
 import {IProject} from '../../interfaces';
@@ -20,10 +20,6 @@ export const Projects = () => {
   const goToProjectCreator = () => {
     navigation.navigate('ProjectCreator');
   };
-
-  // if (loading) {
-  //   <ActivityIndicator size="large" />;
-  // }
 
   return (
     <View style={styles.container}>
