@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#6200ee',
     width: '100%',
     paddingBottom: 20,
+    paddingTop: 10,
   },
   wrapper: {
     marginHorizontal: 20,
