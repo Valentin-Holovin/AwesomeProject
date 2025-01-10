@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import Toast from 'react-native-toast-message';
 import {StyleSheet} from 'react-native';
-import {Projects, SignIn, SignUp} from '../screens';
+import {ProjectCreator, Projects, SignIn, SignUp} from '../screens';
 import {useSelector} from 'react-redux';
 import {TRootState} from '../store';
 
@@ -11,7 +12,13 @@ type RootStackParamList = {
   SignIn: undefined;
   SignUp: undefined;
   Projects: undefined;
+  ProjectCreator: undefined;
 };
+
+export type SignInScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'SignIn'
+>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -33,7 +40,10 @@ const AppNavigation = () => {
               <Stack.Screen name="SignUp" component={SignUp} />
             </>
           ) : (
-            <Stack.Screen name="Projects" component={Projects} />
+            <>
+              <Stack.Screen name="Projects" component={Projects} />
+              <Stack.Screen name="ProjectCreator" component={ProjectCreator} />
+            </>
           )}
         </Stack.Navigator>
       </NavigationContainer>

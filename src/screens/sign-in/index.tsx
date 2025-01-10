@@ -11,7 +11,7 @@ export const SignIn = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  const navigation = useNavigator();
+  const {navigation} = useNavigator();
   const {validateField} = useValidation();
 
   const loading = useSelector<TRootState, boolean>(

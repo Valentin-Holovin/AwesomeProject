@@ -4,5 +4,12 @@ import {SignInScreenNavigationProp} from '../navigation/AppNavigation';
 export const useNavigator = () => {
   const navigation = useNavigation<SignInScreenNavigationProp>();
 
-  return navigation;
+  const goToBack = () => {
+    navigation.goBack();
+  };
+
+  return {
+    navigation,
+    goToBack,
+  };
 };

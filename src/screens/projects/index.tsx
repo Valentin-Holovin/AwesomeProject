@@ -2,11 +2,12 @@ import React from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {Button, Text, ActivityIndicator} from '@react-native-material/core';
 import {Header, ProjectList} from '../../components';
-import {useProjects} from '../../hooks';
+import {useNavigator, useProjects} from '../../hooks';
 import {IProject} from '../../interfaces';
 
 export const Projects = () => {
   const {projects, error, loading, fetchProjects} = useProjects();
+  const {navigation} = useNavigator();
 
   React.useEffect(() => {
     fetchProjects();
@@ -14,6 +15,10 @@ export const Projects = () => {
 
   const renderItem = ({item}: {item: IProject}) => {
     return <ProjectList project={item} />;
+  };
+
+  const goToProjectCreator = () => {
+    navigation.navigate('ProjectCreator');
   };
 
   if (loading) {
@@ -31,6 +36,7 @@ export const Projects = () => {
           title="Create Project"
           style={styles.button}
           titleStyle={styles.button_text}
+          onPress={goToProjectCreator}
         />
         <FlatList
           data={projects}

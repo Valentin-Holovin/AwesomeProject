@@ -66,6 +66,23 @@ export const useValidation = () => {
     return {isValid: true, errorMessage: ''};
   };
 
+  const validateTitleOrDescription = (
+    value: string,
+    fieldName: string,
+  ): ValidationResult => {
+    if (!value) {
+      const errorMessage = `${fieldName} is required.`;
+      showToastError(errorMessage);
+      return {isValid: false, errorMessage};
+    }
+    if (value.length < 3) {
+      const errorMessage = `${fieldName} must be at least 3 characters.`;
+      showToastError(errorMessage);
+      return {isValid: false, errorMessage};
+    }
+    return {isValid: true, errorMessage: ''};
+  };
+
   const validateField = (fieldName: string, value: string) => {
     let result: ValidationResult;
 
@@ -75,6 +92,8 @@ export const useValidation = () => {
       result = validatePassword(value);
     } else if (fieldName === 'name') {
       result = validateName(value);
+    } else if (fieldName === 'title' || fieldName === 'description') {
+      result = validateTitleOrDescription(value, fieldName);
     } else {
       result = {isValid: true, errorMessage: ''};
     }
