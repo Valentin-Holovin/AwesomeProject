@@ -8,6 +8,8 @@ import {TRootState} from '../../store';
 import {usersOutsideProjectSelector} from '../../store/selectors/usersSelectors';
 import {useProjects, useUsers} from '../../hooks';
 import {UsersInProjectModal} from '../users-in-project-modal';
+import {LoadingIndicator} from '../loading-indicator';
+import {showToast} from '../../services';
 
 interface UserInProjectPickerProps {
   projectId: number;
@@ -24,12 +26,12 @@ export const UserInProjectPicker = ({
     (state: TRootState) => usersOutsideProjectSelector(usersInProject)(state),
   );
 
+  const {fetchUsers, loading} = useUsers();
+  const {addUserToProject, removeUserFromProject} = useProjects();
+
   React.useEffect(() => {
     fetchUsers();
   }, []);
-
-  const {fetchUsers} = useUsers();
-  const {addUserToProject, removeUserFromProject} = useProjects();
 
   const openModal = React.useCallback(() => {
     setOpen(true);
@@ -42,19 +44,30 @@ export const UserInProjectPicker = ({
   const addUserToCurrentProject = React.useCallback(
     (selectedUser: IUser) => {
       addUserToProject(projectId, selectedUser.id);
+      showToast({
+        type: 'success',
+        text1: 'User added to project ',
+      });
     },
+
     [projectId],
   );
 
   const removeUserFromCurrentProject = React.useCallback(
     (selectedUser: IUser) => {
       removeUserFromProject(projectId, selectedUser.id);
+      showToast({
+        type: 'info',
+        text1: 'User removed from the project',
+      });
     },
     [projectId],
   );
 
   return (
     <View style={styles.container}>
+      <LoadingIndicator visible={loading} />
+
       <Button
         title="USER IN PROJECT"
         style={styles.button}
@@ -67,6 +80,8 @@ export const UserInProjectPicker = ({
         usersInProject={usersInProject}
         usersOutsideProject={usersOutsideProject}
         closeModal={closeModal}
+        addUserToCurrentProject={addUserToCurrentProject}
+        removeUserFromCurrentProject={removeUserFromCurrentProject}
       />
     </View>
   );

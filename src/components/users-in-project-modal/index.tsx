@@ -11,6 +11,8 @@ interface UsersInProjectModalProps {
   usersInProject: IUser[];
   usersOutsideProject: IUser[];
   closeModal: () => void;
+  addUserToCurrentProject: (user: IUser) => void;
+  removeUserFromCurrentProject: (user: IUser) => void;
 }
 
 export const UsersInProjectModal = ({
@@ -18,6 +20,8 @@ export const UsersInProjectModal = ({
   usersInProject,
   usersOutsideProject,
   closeModal,
+  addUserToCurrentProject,
+  removeUserFromCurrentProject,
 }: UsersInProjectModalProps) => {
   const [activeTab, setActiveTab] = React.useState('first');
 
@@ -30,11 +34,19 @@ export const UsersInProjectModal = ({
           <UserTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
           {activeTab === 'first' && (
-            <UsersInProjectList data={usersInProject} icon={<CloseIcon />} />
+            <UsersInProjectList
+              data={usersInProject}
+              icon={<CloseIcon />}
+              onClick={removeUserFromCurrentProject}
+            />
           )}
 
           {activeTab === 'second' && (
-            <UsersInProjectList data={usersOutsideProject} icon={<AddIcon />} />
+            <UsersInProjectList
+              data={usersOutsideProject}
+              icon={<AddIcon />}
+              onClick={addUserToCurrentProject}
+            />
           )}
 
           <View style={styles.modalCloseButton}>
@@ -51,7 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   modalContent: {
     width: '90%',

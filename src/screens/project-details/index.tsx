@@ -20,12 +20,12 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({route}) => {
   const {project} = route.params;
 
   const projectInfo = useSelector<TRootState, IProject | undefined>(
-    (state: TRootState) => projectInfoSelector(parseInt(project.id!))(state),
+    (state: TRootState) => projectInfoSelector(project.id!)(state),
   );
 
   const {navigation, goToBack} = useNavigator();
   const {deleteProject} = useProjects();
-  const {tasks, error, loading, fetchTasks} = useTasks(parseInt(project.id!));
+  const {tasks, error, loading, fetchTasks} = useTasks(project.id!);
 
   React.useEffect(() => {
     fetchTasks();
@@ -77,7 +77,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({route}) => {
           horizontal
           showsHorizontalScrollIndicator={false}>
           <UserInProjectPicker
-            projectId={parseInt(project.id!)}
+            projectId={project.id}
             usersInProject={projectInfo?.users ?? []}
           />
           <Button

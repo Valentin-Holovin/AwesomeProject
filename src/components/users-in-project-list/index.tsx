@@ -2,13 +2,30 @@ import {Pressable, Text} from '@react-native-material/core';
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {IUser} from '../../interfaces';
+import {useIsAdmin} from '../../hooks';
 
 interface UsersInProjectListProps {
   data: IUser[];
   icon: React.ReactElement;
+  onClick: (user: IUser) => void;
 }
 
-export const UsersInProjectList = ({data, icon}: UsersInProjectListProps) => {
+export const UsersInProjectList = ({
+  data,
+  icon,
+  onClick,
+}: UsersInProjectListProps) => {
+  const {isAdmin} = useIsAdmin();
+
+  const handleClick = React.useCallback(
+    (user: IUser) => {
+      if (isAdmin) {
+        onClick(user);
+      }
+    },
+    [isAdmin, onClick],
+  );
+
   const renderItem = ({item}: {item: IUser}) => (
     <View style={styles.container}>
       <View style={styles.textWrapper}>
@@ -17,7 +34,9 @@ export const UsersInProjectList = ({data, icon}: UsersInProjectListProps) => {
         </Text>
       </View>
 
-      <Pressable>{icon}</Pressable>
+      {isAdmin && (
+        <Pressable onPress={() => handleClick(item)}>{icon}</Pressable>
+      )}
     </View>
   );
 
@@ -34,6 +53,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#f0f0f0',
     padding: 5,
+    height: 40,
     borderRadius: 8,
     alignItems: 'center',
     flexDirection: 'row',
