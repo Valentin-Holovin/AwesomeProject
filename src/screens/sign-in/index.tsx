@@ -8,8 +8,8 @@ import {TAppDispatch, TRootState} from '../../store';
 import {signInAsyncAction} from '../../store/actions/authActions';
 
 export const SignIn = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState('admin@gmail.com');
+  const [password, setPassword] = React.useState('Password12345');
 
   const {navigation} = useNavigator();
   const {validateField} = useValidation();

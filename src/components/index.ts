@@ -5,3 +5,7 @@ export {LoadingIndicator} from './loading-indicator/index';
 export {TaskStatus} from './task-status/index';
 export {TaskType} from './task-type/index';
 export {TaskUser} from './task-user/index';
+export {UserInProjectPicker} from './users-in-project-picker/index';
+export {UsersInProjectList} from './users-in-project-list/index';
+export {UsersInProjectModal} from './users-in-project-modal';
+export {UserTabs} from './user-tabs';

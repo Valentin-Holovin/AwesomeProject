@@ -2,7 +2,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import {View, Alert, StyleSheet, ScrollView} from 'react-native';
-import {Header, LoadingIndicator, TaskList} from '../../components';
+import {
+  Header,
+  LoadingIndicator,
+  TaskList,
+  UserInProjectPicker,
+} from '../../components';
 import {useNavigator, useProjects, useTasks} from '../../hooks';
 import {ProjectDetailsProps} from '../../navigation/AppNavigation';
 import {Button, Text} from '@react-native-material/core';
@@ -71,10 +76,9 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({route}) => {
           style={styles.button_wrapper}
           horizontal
           showsHorizontalScrollIndicator={false}>
-          <Button
-            title="USER IN PROJECT"
-            style={styles.button}
-            titleStyle={styles.button_text}
+          <UserInProjectPicker
+            projectId={parseInt(project.id!)}
+            usersInProject={projectInfo?.users ?? []}
           />
           <Button
             title="CREATE TASK"
