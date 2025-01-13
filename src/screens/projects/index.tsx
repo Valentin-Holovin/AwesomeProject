@@ -4,26 +4,22 @@ import {View, StyleSheet} from 'react-native';
 import {Button, Text} from '@react-native-material/core';
 import {Header, ProjectList} from '../../components';
 import {useNavigator, useProjects} from '../../hooks';
-import useCurrentUser from '../../hooks/useCurrentUser';
 
 export const Projects = () => {
   const {projects, error, loading, fetchProjects} = useProjects();
   const {navigation} = useNavigator();
-  const {currentUser, fetchCurrentUser} = useCurrentUser();
 
   React.useEffect(() => {
     fetchProjects();
-    fetchCurrentUser();
   }, []);
 
   const goToProjectCreator = () => {
     navigation.navigate('ProjectCreator');
   };
-  console.log('current user:', currentUser);
 
   return (
     <View style={styles.container}>
-      <Header title="Projects" currentUser={currentUser} />
+      <Header title="Projects" />
       <View style={styles.wrapper}>
         <Text style={styles.title}>Projects</Text>
         <Button
