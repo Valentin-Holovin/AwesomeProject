@@ -7,10 +7,9 @@ import {TUserRole} from '../../interfaces';
 import {Button, TextInput} from '@react-native-material/core';
 import CheckBoxCompleteIcon from '../../assets/icons/checkBox-complete-icon';
 import CheckBoxIcon from '../../assets/icons/checkBox-icon';
-import {useNavigator, useValidation} from '../../hooks';
+import {useGallery, useNavigator, useValidation} from '../../hooks';
 import {signUpAsyncAction} from '../../store/actions/authActions';
 import {EMPTY_PHOTO_URL} from '../../constants';
-import useGallery from '../../hooks/useGallary';
 
 export const SignUp = () => {
   const [email, setEmail] = useState('');

@@ -5,3 +5,5 @@ export {useTasks} from './useTask';
 export {useUsers} from './useUsers';
 export {useIsAdmin} from './useIsAdmin';
 export {useCurrentUser} from './useCurrentUser';
+export {useGallery} from './useGallary';
+export {usePermission} from './usePermission';

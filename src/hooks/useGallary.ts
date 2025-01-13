@@ -1,9 +1,9 @@
 import React from 'react';
-import usePermission from './usePermission';
+import {usePermission} from './usePermission';
 import {PERMISSIONS} from 'react-native-permissions';
 import {CameraOptions, launchImageLibrary} from 'react-native-image-picker';
 
-const useGallery = () => {
+export const useGallery = () => {
   const [photo, setPhoto] = React.useState<string>();
 
   const {allowed, checkPermission} = usePermission(
@@ -41,5 +41,3 @@ const useGallery = () => {
   };
   return {photo, selectPhoto};
 };
-
-export default useGallery;

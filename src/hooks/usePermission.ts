@@ -1,7 +1,7 @@
 import React from 'react';
 import {Permission, RESULTS, check, request} from 'react-native-permissions';
 
-const usePermission = (permission: Permission) => {
+export const usePermission = (permission: Permission) => {
   const [allowed, setAllowed] = React.useState(false);
 
   const checkPermission = async (): Promise<boolean> => {
@@ -37,5 +37,3 @@ const usePermission = (permission: Permission) => {
 
   return {allowed, checkPermission};
 };
-
-export default usePermission;
