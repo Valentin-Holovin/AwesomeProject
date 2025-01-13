@@ -6,6 +6,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Toast from 'react-native-toast-message';
 import {StyleSheet} from 'react-native';
 import {
+  Profile,
   ProjectCreator,
   ProjectDetails,
   ProjectEditor,
@@ -30,6 +31,7 @@ type RootStackParamList = {
   ProjectDetails: {
     project: IProject;
   };
+  Profile: undefined;
 };
 
 export type SignInScreenNavigationProp = NativeStackNavigationProp<
@@ -71,6 +73,7 @@ const AppNavigation = () => {
               <Stack.Screen name="ProjectCreator" component={ProjectCreator} />
               <Stack.Screen name="ProjectEditor" component={ProjectEditor} />
               <Stack.Screen name="ProjectDetails" component={ProjectDetails} />
+              <Stack.Screen name="Profile" component={Profile} />
             </>
           )}
         </Stack.Navigator>

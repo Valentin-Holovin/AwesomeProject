@@ -10,7 +10,11 @@ interface HeaderProps {
 }
 
 export const Header = ({title, isBack}: HeaderProps) => {
-  const {goToBack} = useNavigator();
+  const {goToBack, navigation} = useNavigator();
+
+  const goToProfile = () => {
+    navigation.navigate('Profile');
+  };
 
   return (
     <View style={styles.container}>
@@ -23,7 +27,7 @@ export const Header = ({title, isBack}: HeaderProps) => {
         <View>
           <Text style={styles.title}>{title}</Text>
         </View>
-        <Pressable style={styles.profile_wrapper}>
+        <Pressable style={styles.profile_wrapper} onPress={goToProfile}>
           <Avatar
             image={{
               uri: 'https://m.media-amazon.com/images/S/pv-target-images/dbf6812f59e5080cf420f1056bfceb66f7d6a43a8df19ace503ea70596afc0ff._SX1080_FMjpg_.jpg',
