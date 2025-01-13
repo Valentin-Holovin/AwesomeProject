@@ -1,4 +1,4 @@
-import { IUser } from '@interfaces';
+import {IUser} from '../index';
 
 export interface ICurrentUserReducerState {
   currentUser: IUser | undefined;

@@ -1,4 +1,4 @@
-import { IStatus } from '@interfaces';
+import {IStatus} from '..';
 
 export interface ISetStatusesAction {
   statuses: IStatus[];

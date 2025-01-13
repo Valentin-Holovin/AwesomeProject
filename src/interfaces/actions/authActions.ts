@@ -1,4 +1,4 @@
-import { TUserRole } from '@interfaces';
+import {TUserRole} from '..';
 
 export interface ISetAccessTokenAction {
   accessToken: string | undefined;
@@ -20,6 +20,6 @@ export interface ISignUpAsyncAction {
   password: string;
   repeatPassword: string;
   role: TUserRole;
-  avatar?: File;
+  avatar?: string;
   onSuccess?: () => void;
 }

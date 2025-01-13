@@ -1,4 +1,4 @@
-import { IComment, IFile } from '@interfaces';
+import {IComment, IFile} from '..';
 
 export interface ISetCommentsAction {
   comments: IComment[];

@@ -71,12 +71,14 @@ export const signUpAsyncAction = createAsyncThunk<void, ISignUpAsyncAction>(
     }: ISignUpAsyncAction,
     {getState, dispatch},
   ) => {
+    console.log(email, password, name, role);
     try {
       dispatch(setLoadingAction({loading: true}));
       const res = await signUpApi(email, name, password, role, avatar);
       if (res.token) {
         dispatch(setAccessTokenAction({accessToken: res.token}));
       }
+      console.log({res});
       console.log({token: res.token});
       if (onSuccess) {
         onSuccess();

@@ -14,7 +14,7 @@ export const signUpApi = async (
   name: string,
   password: string,
   role: TUserRole,
-  avatar?: File,
+  avatar?: string,
 ) => {
   const formData = new FormData();
   formData.append('email', email);
@@ -22,8 +22,18 @@ export const signUpApi = async (
   formData.append('password', password);
   formData.append('role', role);
   if (avatar) {
-    formData.append('avatar', avatar);
+    const file = {
+      uri: avatar,
+      name: 'avatar.jpg',
+      type: 'image/jpeg',
+    } as any;
+    formData.append('avatar', file);
   }
-  const res = await axiosInstance.post('/users/registration', formData);
+  console.log('formdata:', email, name, password, role, avatar);
+  const res = await axiosInstance.post('/users/registration', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
   return res.data;
 };

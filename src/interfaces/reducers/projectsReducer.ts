@@ -1,4 +1,4 @@
-import { IProject } from '@interfaces';
+import {IProject} from '../index';
 
 export interface IProjectsReducerState {
   projects: IProject[];
