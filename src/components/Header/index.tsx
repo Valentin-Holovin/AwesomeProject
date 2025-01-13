@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Text, Avatar, Pressable} from '@react-native-material/core';
@@ -12,21 +13,18 @@ interface HeaderProps {
 
 export const Header = ({title, isBack}: HeaderProps) => {
   const {currentUser, fetchCurrentUser} = useCurrentUser();
-  
+  const {goToBack, navigation} = useNavigator();
+
   React.useEffect(() => {
     fetchCurrentUser();
   }, []);
-  
+
   const avatarUrl = React.useMemo(() => {
     console.log('avatar', currentUser?.avatar);
     return currentUser?.avatar
       ? currentUser.avatar
       : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
   }, [currentUser]);
-
-  const {goToBack} = useNavigator();
-  
-  const {goToBack, navigation} = useNavigator();
 
   const goToProfile = () => {
     navigation.navigate('Profile');
