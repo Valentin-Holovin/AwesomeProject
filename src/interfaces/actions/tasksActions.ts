@@ -1,4 +1,4 @@
-import { IFile, IStatus, ITask, IType, IUser } from '@interfaces';
+import {ITask, IStatus, IType, IUser, IFile} from '..';
 
 export interface ISetTasksAction {
   tasks: ITask[];

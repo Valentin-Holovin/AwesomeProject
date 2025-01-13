@@ -1,4 +1,4 @@
-import { IStatus } from '@interfaces';
+import {IStatus} from '../index';
 
 export interface IStatusesReducerState {
   statuses: IStatus[];

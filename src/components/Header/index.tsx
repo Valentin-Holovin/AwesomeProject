@@ -3,6 +3,7 @@ import {View, StyleSheet} from 'react-native';
 import {Text, Avatar, Pressable} from '@react-native-material/core';
 import {ArrowLeft} from '../../assets';
 import {useNavigator} from '../../hooks';
+import useCurrentUser from '../../hooks/useCurrentUser';
 
 interface HeaderProps {
   title: string;
@@ -10,6 +11,17 @@ interface HeaderProps {
 }
 
 export const Header = ({title, isBack}: HeaderProps) => {
+  const {currentUser, fetchCurrentUser} = useCurrentUser();
+  React.useEffect(() => {
+    fetchCurrentUser();
+  }, []);
+  const avatarUrl = React.useMemo(() => {
+    console.log('avatar', currentUser?.avatar);
+    return currentUser?.avatar
+      ? currentUser.avatar
+      : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
+  }, [currentUser]);
+
   const {goToBack} = useNavigator();
 
   return (
@@ -26,7 +38,7 @@ export const Header = ({title, isBack}: HeaderProps) => {
         <Pressable style={styles.profile_wrapper}>
           <Avatar
             image={{
-              uri: 'https://m.media-amazon.com/images/S/pv-target-images/dbf6812f59e5080cf420f1056bfceb66f7d6a43a8df19ace503ea70596afc0ff._SX1080_FMjpg_.jpg',
+              uri: avatarUrl,
             }}
             size={38}
           />

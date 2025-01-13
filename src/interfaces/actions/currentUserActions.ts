@@ -1,4 +1,4 @@
-import { IUser } from '@interfaces';
+import {IUser} from '..';
 
 export interface ISetCurrentUserAction {
   currentUser: IUser;

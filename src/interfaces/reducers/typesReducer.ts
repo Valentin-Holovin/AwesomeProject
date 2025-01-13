@@ -1,4 +1,4 @@
-import { IType } from '@interfaces';
+import {IType} from '../index';
 
 export interface ITypesReducerState {
   types: IType[];

@@ -1,4 +1,4 @@
-import { IUser } from '@interfaces';
+import {IUser} from '../index';
 
 export interface IUsersReducerState {
   users: IUser[];

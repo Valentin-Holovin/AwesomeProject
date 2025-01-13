@@ -1,4 +1,4 @@
-import { IProject } from '@interfaces';
+import {IProject} from '..';
 
 export interface ISetProjectsAction {
   projects: IProject[];

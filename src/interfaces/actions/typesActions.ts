@@ -1,4 +1,4 @@
-import { IType } from '@interfaces';
+import {IType} from '..';
 
 export interface ISetTypesAction {
   types: IType[];
