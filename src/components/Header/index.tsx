@@ -12,9 +12,11 @@ interface HeaderProps {
 
 export const Header = ({title, isBack}: HeaderProps) => {
   const {currentUser, fetchCurrentUser} = useCurrentUser();
+  
   React.useEffect(() => {
     fetchCurrentUser();
   }, []);
+  
   const avatarUrl = React.useMemo(() => {
     console.log('avatar', currentUser?.avatar);
     return currentUser?.avatar
@@ -23,6 +25,12 @@ export const Header = ({title, isBack}: HeaderProps) => {
   }, [currentUser]);
 
   const {goToBack} = useNavigator();
+  
+  const {goToBack, navigation} = useNavigator();
+
+  const goToProfile = () => {
+    navigation.navigate('Profile');
+  };
 
   return (
     <View style={styles.container}>
@@ -35,7 +43,7 @@ export const Header = ({title, isBack}: HeaderProps) => {
         <View>
           <Text style={styles.title}>{title}</Text>
         </View>
-        <Pressable style={styles.profile_wrapper}>
+        <Pressable style={styles.profile_wrapper} onPress={goToProfile}>
           <Avatar
             image={{
               uri: avatarUrl,
