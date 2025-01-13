@@ -1,4 +1,4 @@
-import {Pressable} from '@react-native-material/core';
+import {Button, Pressable} from '@react-native-material/core';
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {DeleteIcon} from '../../assets';
@@ -10,12 +10,18 @@ interface ProfileAvatarProps {
 
 export const ProfileAvatar = ({avatar, deleteAvatar}: ProfileAvatarProps) => {
   return (
-    <Pressable style={styles.avatar_wrapper} onPress={deleteAvatar}>
-      <View style={styles.delete_avatar_icon}>
-        <DeleteIcon color="#ff0000" />
+    <View>
+      <Pressable style={styles.avatar_wrapper} onPress={deleteAvatar}>
+        <View style={styles.delete_avatar_icon}>
+          <DeleteIcon color="#ff0000" />
+        </View>
+        <Image source={{uri: `${avatar}`}} style={styles.avatar} />
+      </Pressable>
+
+      <View style={styles.button_wrapper}>
+        <Button style={styles.button} title="CHOOSE AVATAR" />
       </View>
-      <Image source={{uri: `${avatar}`}} style={styles.avatar} />
-    </Pressable>
+    </View>
   );
 };
 
@@ -36,5 +42,17 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 12,
     marginBottom: 12,
+  },
+  button_wrapper: {
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    elevation: 0,
+    shadowOffset: {width: 0, height: 0},
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    width: '50%',
   },
 });

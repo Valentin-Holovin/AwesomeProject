@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
 
   form_wrapper: {
-    marginTop: 15,
+    marginTop: 20,
   },
   input: {
     marginTop: 10,
