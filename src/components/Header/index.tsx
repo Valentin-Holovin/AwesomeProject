@@ -3,8 +3,7 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Text, Avatar, Pressable} from '@react-native-material/core';
 import {ArrowLeft} from '../../assets';
-import {useNavigator} from '../../hooks';
-import useCurrentUser from '../../hooks/useCurrentUser';
+import {useNavigator, useCurrentUser} from '../../hooks';
 
 interface HeaderProps {
   title: string;
@@ -20,7 +19,6 @@ export const Header = ({title, isBack}: HeaderProps) => {
   }, []);
 
   const avatarUrl = React.useMemo(() => {
-    console.log('avatar', currentUser?.avatar);
     return currentUser?.avatar
       ? currentUser.avatar
       : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';

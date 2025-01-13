@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useDispatch} from 'react-redux';
@@ -58,7 +59,6 @@ export const SignUp = () => {
   ]);
 
   const handleGoToSignInScreen = () => {
-    console.log('navigate/signin');
     navigation.navigate('SignIn');
   };
 

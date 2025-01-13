@@ -4,7 +4,7 @@ import {IUser} from '../interfaces';
 import React from 'react';
 import {fetchCurrentUserAsyncAction} from '../store/actions/currentUserActions';
 
-const useCurrentUser = () => {
+export const useCurrentUser = () => {
   const dispatch = useDispatch<TAppDispatch>();
 
   const currentUser = useSelector<TRootState, IUser | undefined>(
@@ -30,5 +30,3 @@ const useCurrentUser = () => {
     fetchCurrentUser,
   };
 };
-
-export default useCurrentUser;

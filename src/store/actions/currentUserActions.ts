@@ -27,7 +27,6 @@ export const fetchCurrentUserAsyncAction = createAsyncThunk(
   'currentUser/fetchCurrentUserAsyncAction',
   async (_, {getState, dispatch}) => {
     try {
-      console.log('tryFetchCurrentUser');
       dispatch(setLoadingAction({loading: true}));
       const res = await fetchCurrentUserApi();
       const currentUser = res.user;
