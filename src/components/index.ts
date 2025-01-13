@@ -9,3 +9,4 @@ export {UserInProjectPicker} from './users-in-project-picker/index';
 export {UsersInProjectList} from './users-in-project-list/index';
 export {UsersInProjectModal} from './users-in-project-modal';
 export {UserTabs} from './user-tabs';
+export {ProfileAvatar} from './profile-avatar';

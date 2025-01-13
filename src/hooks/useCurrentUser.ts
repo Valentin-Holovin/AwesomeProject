@@ -1,8 +1,13 @@
-import {useDispatch, useSelector} from 'react-redux';
-import {TAppDispatch, TRootState} from '../store';
+/* eslint-disable react-hooks/exhaustive-deps */
+import {setAccessTokenAction} from '../store/actions/authActions';
+import {
+  fetchCurrentUserAsyncAction,
+  updateCurrentUserAsyncAction,
+} from '../store/actions/currentUserActions';
 import {IUser} from '../interfaces';
+import {TAppDispatch, TRootState} from '../store/index';
 import React from 'react';
-import {fetchCurrentUserAsyncAction} from '../store/actions/currentUserActions';
+import {useDispatch, useSelector} from 'react-redux';
 
 export const useCurrentUser = () => {
   const dispatch = useDispatch<TAppDispatch>();
@@ -23,10 +28,33 @@ export const useCurrentUser = () => {
     dispatch(fetchCurrentUserAsyncAction());
   }, []);
 
+  const updateCurrentUser = React.useCallback(
+    (
+      name: string,
+      avatar: File | string | undefined,
+      onSuccess?: () => void,
+    ) => {
+      dispatch(
+        updateCurrentUserAsyncAction({
+          name: name,
+          avatar: avatar,
+          onSuccess: onSuccess,
+        }),
+      );
+    },
+    [],
+  );
+
+  const logout = React.useCallback(() => {
+    dispatch(setAccessTokenAction({accessToken: undefined}));
+  }, []);
+
   return {
     currentUser,
     error,
     loading,
     fetchCurrentUser,
+    updateCurrentUser,
+    logout,
   };
 };
