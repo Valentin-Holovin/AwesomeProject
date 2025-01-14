@@ -7,3 +7,5 @@ export {useIsAdmin} from './useIsAdmin';
 export {useCurrentUser} from './useCurrentUser';
 export {useGallery} from './useGallary';
 export {usePermission} from './usePermission';
+export {useTypes} from './useTypes';
+export {useStatuses} from './useStatuses';

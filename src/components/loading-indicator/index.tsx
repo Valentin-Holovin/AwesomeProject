@@ -13,7 +13,7 @@ export const LoadingIndicator = ({visible}: LoadingIndicatorProps) => {
       visible={visible}
       statusBarTranslucent>
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#6200ed" />
       </View>
     </Modal>
   );

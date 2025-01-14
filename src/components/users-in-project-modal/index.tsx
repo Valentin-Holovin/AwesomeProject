@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingTop: 10,
   },
-
   button: {
     elevation: 0,
     shadowOffset: {width: 0, height: 0},

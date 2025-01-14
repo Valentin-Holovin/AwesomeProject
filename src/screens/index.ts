@@ -5,3 +5,4 @@ export {ProjectCreator} from './project-creator/index';
 export {ProjectEditor} from './project-editor/index';
 export {ProjectDetails} from './project-details/index';
 export {Profile} from './profile/index';
+export {TaskCreator} from './task-creator/index';

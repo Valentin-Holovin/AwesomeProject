@@ -10,3 +10,6 @@ export {UsersInProjectList} from './users-in-project-list/index';
 export {UsersInProjectModal} from './users-in-project-modal';
 export {UserTabs} from './user-tabs';
 export {ProfileAvatar} from './profile-avatar';
+export {TypePicker} from './task-type-picker/index';
+export {StatusPicker} from './task-status-picker/index';
+export {UserPicker} from './task-user-picker/index';

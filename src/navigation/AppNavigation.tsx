@@ -13,6 +13,7 @@ import {
   Projects,
   SignIn,
   SignUp,
+  TaskCreator,
 } from '../screens';
 import {useSelector} from 'react-redux';
 import {TRootState} from '../store';
@@ -32,6 +33,9 @@ type RootStackParamList = {
     project: IProject;
   };
   Profile: undefined;
+  TaskCreator: {
+    projectId: number;
+  };
 };
 
 export type SignInScreenNavigationProp = NativeStackNavigationProp<
@@ -46,6 +50,11 @@ export type ProjectEditorProps = NativeStackScreenProps<
 export type ProjectDetailsProps = NativeStackScreenProps<
   RootStackParamList,
   'ProjectDetails'
+>;
+
+export type TaskCreatorProps = NativeStackScreenProps<
+  RootStackParamList,
+  'TaskCreator'
 >;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -74,6 +83,7 @@ const AppNavigation = () => {
               <Stack.Screen name="ProjectEditor" component={ProjectEditor} />
               <Stack.Screen name="ProjectDetails" component={ProjectDetails} />
               <Stack.Screen name="Profile" component={Profile} />
+              <Stack.Screen name="TaskCreator" component={TaskCreator} />
             </>
           )}
         </Stack.Navigator>

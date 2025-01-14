@@ -61,6 +61,12 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({route}) => {
     });
   }, [project]);
 
+  const goToTaskCreator = React.useCallback(() => {
+    navigation.navigate('TaskCreator', {
+      projectId: project?.id,
+    });
+  }, []);
+
   return (
     <View style={styles.container}>
       {loading && <LoadingIndicator visible={loading} />}
@@ -84,6 +90,7 @@ export const ProjectDetails: React.FC<ProjectDetailsProps> = ({route}) => {
             title="CREATE TASK"
             style={styles.button}
             titleStyle={styles.button_text}
+            onPress={goToTaskCreator}
           />
           <Button
             title="EDIT PROJECT"

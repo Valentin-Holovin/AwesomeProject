@@ -138,7 +138,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
-
   form_wrapper: {
     marginTop: 20,
   },
