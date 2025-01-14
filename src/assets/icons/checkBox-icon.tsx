@@ -4,8 +4,8 @@ import Svg, {Rect} from 'react-native-svg';
 const CheckBoxIcon = (props: any) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={16}
-    height={16}
+    width={20}
+    height={20}
     fill="none"
     {...props}>
     <Rect width={16} height={16} fill="#fff" rx={4} />

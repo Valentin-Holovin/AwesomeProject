@@ -5,21 +5,34 @@ import {DeleteIcon} from '../../assets';
 
 interface ProfileAvatarProps {
   avatar: File | string | undefined;
-  deleteAvatar: () => void;
+  deleteAvatar?: () => void;
+  isDeleteIcon?: boolean;
+  selectPhoto?: () => void;
 }
 
-export const ProfileAvatar = ({avatar, deleteAvatar}: ProfileAvatarProps) => {
+export const ProfileAvatar = ({
+  avatar,
+  deleteAvatar,
+  isDeleteIcon = false,
+  selectPhoto,
+}: ProfileAvatarProps) => {
   return (
     <View>
       <Pressable style={styles.avatar_wrapper} onPress={deleteAvatar}>
-        <View style={styles.delete_avatar_icon}>
-          <DeleteIcon color="#ff0000" />
-        </View>
+        {isDeleteIcon && (
+          <View style={styles.delete_avatar_icon}>
+            <DeleteIcon color="#ff0000" />
+          </View>
+        )}
         <Image source={{uri: `${avatar}`}} style={styles.avatar} />
       </Pressable>
 
       <View style={styles.button_wrapper}>
-        <Button style={styles.button} title="CHOOSE AVATAR" />
+        <Button
+          style={styles.button}
+          title="CHOOSE AVATAR"
+          onPress={selectPhoto}
+        />
       </View>
     </View>
   );
@@ -53,6 +66,5 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 0,
     shadowRadius: 0,
-    width: '50%',
   },
 });

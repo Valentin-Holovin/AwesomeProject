@@ -2,13 +2,21 @@ import React from 'react';
 import {usePermission} from './usePermission';
 import {PERMISSIONS} from 'react-native-permissions';
 import {CameraOptions, launchImageLibrary} from 'react-native-image-picker';
+import {Platform} from 'react-native';
 
 export const useGallery = () => {
   const [photo, setPhoto] = React.useState<string>();
 
-  const {allowed, checkPermission} = usePermission(
-    PERMISSIONS.ANDROID.READ_MEDIA_IMAGES,
-  );
+  const photoPermission =
+    Platform.OS === 'ios'
+      ? PERMISSIONS.IOS.PHOTO_LIBRARY
+      : PERMISSIONS.ANDROID.READ_MEDIA_IMAGES;
+
+  const {allowed, checkPermission} = usePermission(photoPermission);
+
+  React.useEffect(() => {
+    checkPermission();
+  }, [checkPermission]);
 
   const fetchGallery = React.useCallback(async (): Promise<
     string | undefined
@@ -17,9 +25,9 @@ export const useGallery = () => {
       mediaType: 'photo',
       quality: 1,
     };
-    let galleryRespose = await launchImageLibrary(options);
-    if (galleryRespose.assets) {
-      return galleryRespose.assets[0].uri;
+    let galleryResponse = await launchImageLibrary(options);
+    if (galleryResponse.assets) {
+      return galleryResponse.assets[0].uri;
     }
   }, []);
 
@@ -39,5 +47,6 @@ export const useGallery = () => {
     }
     return photoUri;
   };
+
   return {photo, selectPhoto};
 };

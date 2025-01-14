@@ -74,6 +74,7 @@ export const Profile = () => {
         <Text style={styles.title}>Your Profile</Text>
 
         <ProfileAvatar
+          isDeleteIcon
           avatar={currentUser?.avatar}
           deleteAvatar={deleteAvatar}
         />
