@@ -3,7 +3,7 @@ import React from 'react';
 import {StyleSheet, View, Alert} from 'react-native';
 import {Header, LoadingIndicator, ProfileAvatar} from '../../components';
 import {Button, Text, TextInput} from '@react-native-material/core';
-import {useCurrentUser, useValidation} from '../../hooks';
+import {useCurrentUser, useGallery, useValidation} from '../../hooks';
 import {UniversalErrorIcon} from '../../assets';
 
 export const Profile = () => {
@@ -17,6 +17,7 @@ export const Profile = () => {
   } = useCurrentUser();
 
   const {validateField} = useValidation();
+  const {selectPhoto} = useGallery();
 
   const [email, setEmail] = React.useState(currentUser?.email);
   const [name, setName] = React.useState(currentUser?.name);
@@ -77,6 +78,7 @@ export const Profile = () => {
           isDeleteIcon
           avatar={currentUser?.avatar}
           deleteAvatar={deleteAvatar}
+          selectPhoto={selectPhoto}
         />
 
         <View style={styles.form_wrapper}>
