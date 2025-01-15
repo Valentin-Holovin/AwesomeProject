@@ -2,7 +2,7 @@ import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
 
 interface DeleteIconProps {
-  color: string;
+  color?: string;
 }
 
 export function DeleteIcon({color = '#000'}: DeleteIconProps) {

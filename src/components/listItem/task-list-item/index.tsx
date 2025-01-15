@@ -16,9 +16,9 @@ interface TaskListItemProps {
 }
 
 export const TaskListItem = ({task, projectInfo}: TaskListItemProps) => {
-  const {navigation, goToBack} = useNavigator();
+  // const {navigation, goToBack} = useNavigator();
 
-  const {deleteTask} = useTasks(parseInt(projectInfo.id!));
+  const {deleteTask} = useTasks(projectInfo?.id!);
 
   const deleteCurrentTask = React.useCallback(() => {
     Alert.alert(
@@ -101,6 +101,8 @@ const styles = StyleSheet.create({
   },
   task_info_wrapper: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignContent: 'center',
     marginTop: 10,
     marginBottom: 5,
   },
